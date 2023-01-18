@@ -82,7 +82,14 @@ public class BookDAO {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connectionclass();
             if(connect != null){
-                String query = "Select * from Sach";
+                String query = "SELECT DISTINCT Sach.MaSach, NhaPhatHanh.TenNPH, Sach.TenSach, BanSaoSach.Gia, TacGia.TenTacGia\n" +
+                        "FROM Sach, TacGia, ChiTietTacGia, NhaPhatHanh, BanSaoSach\n" +
+                        "WHERE (TacGia.MaTacGia = ChiTietTacGia.MaTacGia\n" +
+                        "\tand ChiTietTacGia.MaSach = Sach.MaSach" +
+                        "\tand BanSaoSach.MaSach = Sach.MaSach\n" +
+                        "\tand NhaPhatHanh.MaNPH = Sach.MaNPH\n" +
+                        "\tand BanSaoSach.MaSach = ChiTietTacGia.MaSach)" +
+                        "ORDER BY Sach.MaSach ASC";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
 
@@ -90,11 +97,11 @@ public class BookDAO {
                 {
                     Book book = new Book();
                     book.maSach = rs.getString(1);
-                    book.maLoai = rs.getString(4);
-                    book.tenSach = rs.getString(2);
-                    book.giaThue = 1000;
+                    book.maLoai = rs.getString(2);
+                    book.tenSach = rs.getString(3);
+                    book.giaThue = rs.getInt(4);
                     book.giamGia = 1000;
-                    book.tacGia = "Minh";
+                    book.tacGia = rs.getString(5);
                     list.add(book);
                 }
             }
