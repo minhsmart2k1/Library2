@@ -75,7 +75,7 @@ public class TypeOfBookDAO {
             if(connect != null) {
                 String sqlInsert = "UPDATE NhaPhatHanh\n" +
                         "SET TenNPH = N'" + TypeOfBook.tenLoai + "'\n" +
-                        "WHERE MaNPH = '" + TypeOfBook.maLoai + "';";
+                        "WHERE MaNPH = " + Integer.parseInt(TypeOfBook.maLoai) + ";";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(sqlInsert);
                 check = true;

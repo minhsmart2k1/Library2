@@ -8,7 +8,7 @@ public class Book {
     public int giamGia;
     public String tacGia;
 
-    public Book(String maSach, String tenSach, int giaThue, String maLoai, int giamGia) {
+    public Book(String maSach, String tenSach, int giaThue, String maLoai, int giamGia, String tacGia) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.giaThue = giaThue;
