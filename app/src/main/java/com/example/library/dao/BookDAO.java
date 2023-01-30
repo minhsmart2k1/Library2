@@ -1,5 +1,7 @@
 package com.example.library.dao;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -47,7 +49,20 @@ public class BookDAO {
                 String sqlInsert = "INSERT INTO Sach (TenSach, TenTacGia,GiaThue, MaNPH) " +
                         "VALUES (N'" + book.tenSach + "', N'" + book.tacGia + "'," + book.giaThue + "," + book.maLoai + ")";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlInsert);
+                st.executeUpdate(sqlInsert);
+                String query = "SELECT * FROM Sach";
+                Statement st1 = connect.createStatement();
+                ResultSet rs1 = st1.executeQuery(query);
+                while (rs1.next())
+                {
+                    book.maSach = rs1.getString(1);
+                }
+                Log.v("View", "Insert book" + book.maSach);
+                for(int i = 0; i < 3; i++){
+                    String sqlInsertCP = "INSERT INTO BanSaoSach(ViTri, TrangThai, MaSach) VALUES\n" +
+                            "(N'1A1', 1" + ",'" + book.maSach + "')";
+                    st.executeUpdate(sqlInsertCP);
+                }
                 check = true;
             }
             else
