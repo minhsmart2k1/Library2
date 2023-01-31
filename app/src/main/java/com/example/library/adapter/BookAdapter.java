@@ -25,7 +25,7 @@ public class BookAdapter extends ArrayAdapter<Book> implements Filterable {
     ArrayList<Book> lists;
     ArrayList<Book> listSe;
     BookFragment fragment;
-    TextView tvIdB, tvIdTob, tvNameB, tvRentPrice, tvDiscountB, tvTacGia;
+    TextView tvIdB, tvIdTob, tvNameB, tvRentPrice, tvDiscountB, tvTacGia, tvSoLuong, tvViTri;
     TypeOfBookDAO typeOfBookDAO;
 
     public BookAdapter(Context context, BookFragment fragment, ArrayList<Book> lists) {
@@ -99,6 +99,8 @@ public class BookAdapter extends ArrayAdapter<Book> implements Filterable {
             tvRentPrice = view.findViewById(R.id.tvRentPrice);
             tvDiscountB = view.findViewById(R.id.tvDiscountB);
             tvTacGia = view.findViewById(R.id.tvTacGia);
+            tvSoLuong  = view.findViewById(R.id.tvSoLuong);
+            tvViTri = view.findViewById(R.id.tvViTri);
             btnDel=view.findViewById(R.id.imgDeleteS);
 
 
@@ -108,6 +110,8 @@ public class BookAdapter extends ArrayAdapter<Book> implements Filterable {
             tvRentPrice.setText(""+book.giaThue);
             tvDiscountB.setText(""+ book.giamGia);
             tvTacGia.setText(""+ book.tacGia);
+            tvSoLuong.setText(""+ book.SoluongCP);
+            tvViTri.setText(""+ book.ViTri);
 
 
 
