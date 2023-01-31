@@ -42,7 +42,7 @@ public class TypeOfBookDAO {
             if(connect != null) {
                 String sqlInsert = "INSERT INTO NhaPhatHanh VALUES (N'" + TypeOfBook.tenLoai + "')";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlInsert);
+                st.executeUpdate(sqlInsert);
                 check = true;
             }
             else
@@ -77,7 +77,7 @@ public class TypeOfBookDAO {
                         "SET TenNPH = N'" + TypeOfBook.tenLoai + "'\n" +
                         "WHERE MaNPH = " + Integer.parseInt(TypeOfBook.maLoai) + ";";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlInsert);
+                st.executeUpdate(sqlInsert);
                 check = true;
             }
             else
@@ -109,7 +109,7 @@ public class TypeOfBookDAO {
                 String sqlDelete = "DELETE FROM NhaPhatHanh\n" +
                         "WHERE MaNPH = '" + id + "';";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlDelete);
+                st.executeUpdate(sqlDelete);
                 return 1;
             }
             else

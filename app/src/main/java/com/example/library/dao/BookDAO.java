@@ -99,7 +99,7 @@ public class BookDAO {
                         "SET TenSach = N'" + book.tenSach + "', TenTacGia = N'" + book.tacGia + "', GiaThue = " + book.giaThue + ", MaNPH = " + Integer.parseInt(book.maLoai) + "\n" +
                         "WHERE MaSach = '" + book.maSach + "';";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlInsert);
+                st.executeUpdate(sqlInsert);
                 check = true;
             }
             else
@@ -130,7 +130,7 @@ public class BookDAO {
                 String sqlDelete = "DELETE FROM Sach\n" +
                         "WHERE MaSach = '" + id + "';";
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(sqlDelete);
+                st.executeUpdate(sqlDelete);
                 return 1;
             }
             else
@@ -195,6 +195,7 @@ public class BookDAO {
                     book.tacGia = rs.getString(3);
                     list.add(book);
                 }
+                Log.v("Size User", "Size: " + list.size());
             }
             else
             {
